@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Circle (bottom layer) -->
+    <item android:id="@+id/innerCircle">
+        <shape android:shape="oval">
+            <solid android:color="@color/blackAlpha_13" />
+        </shape>
+    </item>
+    <item android:id="@+id/outerCircle">
+        <shape android:shape="oval">
+            <solid android:color="@color/invisible" />
+            <stroke
+                android:width="5dp"
+                android:color="@color/black" />
+            <size
+                android:width="200dp"
+                android:height="200dp"/>
+        </shape>
+    </item>
+
+    <!-- Line left to right (top layer) -->
+    <item
+        android:id="@+id/line"
+        android:left="0dp"
+        android:top="0dp">
+        <shape android:shape="line">
+            <stroke
+            android:width="5dp"
+            android:color="@color/black" />
+        </shape>
+    </item>
+    <!-- Square top to bottom (top layer) -->
+    <item
+        android:id="@+id/square"
+        android:top="0dp"
+        android:left="98dp"
+        android:right="98dp"
+        android:bottom="0dp">
+        <shape android:shape="rectangle">
+            <stroke
+                android:width="3dp"
+                android:color="@color/black" />
+        </shape>
+    </item>
+</layer-list>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/overlayRoot"
+    android:layout_width="110dp"
+    android:layout_height="wrap_content"
+    android:background="@color/overlayBG"> <!-- Semi-transparent black -->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ButtonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <Button
+            android:id="@+id/AddButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="@string/AddButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/SubButton"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <Button
+            android:id="@+id/SubButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/SubButton"
+            app:layout_constraintTop_toBottomOf="@+id/AddButton"
+            app:layout_constraintBottom_toTopOf="@+id/StartButton"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <Button
+            android:id="@+id/StartButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/StartButton"
+            app:layout_constraintTop_toBottomOf="@+id/SubButton"
+            app:layout_constraintBottom_toTopOf="@+id/ButtonSettingsButton"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <Button
+            android:id="@+id/ButtonSettingsButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/SettingsButton"
+            app:layout_constraintTop_toBottomOf="@+id/StartButton"
+            app:layout_constraintBottom_toTopOf="@+id/SaveButton"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <Button
+            android:id="@+id/SaveButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/SaveButton"
+            app:layout_constraintTop_toBottomOf="@+id/ButtonSettingsButton"
+            app:layout_constraintBottom_toTopOf="@+id/loadButton"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <Button
+            android:id="@+id/loadButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/LoadButton"
+            app:layout_constraintTop_toBottomOf="@+id/SaveButton"
+            app:layout_constraintBottom_toTopOf="@+id/closeButton"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <Button
+            android:id="@+id/closeButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/CloseButton"
+            app:layout_constraintTop_toBottomOf="@+id/loadButton"
+            app:layout_constraintBottom_toTopOf="@id/minimizeButton"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/minimizeButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/MinimizeButton"
+            app:layout_constraintTop_toBottomOf="@id/closeButton"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Add more views here... -->
+</FrameLayout>

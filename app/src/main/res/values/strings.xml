@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">auto clicker</string>
+    <string name="accessibility_service_label">Auto Clicker Accessibility Service</string>
+    <!--buttons-->
+    <string name="Button1">Button1</string>
+    <string name="AddButton">+</string>
+    <string name="SubButton">-</string>
+    <string name="StartButton">Start</string>
+    <string name="SettingsButton">Settings</string>
+    <string name="SaveButton">Save</string>
+    <string name="LoadButton">Load</string>
+    <string name="CloseButton">Close</string>
+    <string name="MinimizeButton">Minimize</string>
+    <string name="ShowButton">Show</string>
+    <string name="SaveFileButton">Save File</string>
+    <string name="BackButton">Back</string>
+    <string name="SelectButton">Select</string>
+    <string name="RenameButton">Rename</string>
+    <string name="ColorButton">Color</string>
+    <string name="PermissionButton">Permission</string>
+    <string name="ButtonColorButton">Button Color</string>
+    <string name="AppColorButton">App Color</string>
+    <string name="DeleteButton">Delete</string>
+    <string name="DefaultButton">Default</string>
+    <!--screen-->
+    <string name="AutoClickerScreen">Auto Clicker</string>
+    <string name="SaveFileScreen">Save File</string>
+    <string name="ButtonSettingsScreen">Button Settings</string>
+    <string name="AppSettingsScreen">App Settings</string>
+    <!--App Settings Strings-->
+    <string name="PermissionSettingText">Permission Settings</string>
+    <string name="AppColor">App Color Settings</string>
+    <string name="ButtonColor">Button Color Settings</string>
+    <string name="Light">Light</string>
+    <string name="Dark">Dark</string>"
+    <string name="Apply">Apply</string>
+    <!--usable string-->
+    <string name="PressGraphic">Press Graphic</string>
+    <string name="EmptyGraphicSetting">No graphic detected</string>
+    <string name="EmptySaveFile">No save file detected</string>
+    <string name="TimeSetting">Time Settings</string>
+    <string name="ColorSettings">Color Settings</string>
+    <string name="BGColor">Background Color</string>
+    <string name="OutlineColor">Outline Color</string>
+    <string name="TextColor">Text Color</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="GraphicText">0</string>
+
+    <!--<string name=""></string>-->
+
+
+    <string name="Textview1">Textview1</string>
+</resources>
