@@ -34,19 +34,22 @@
             android:id="@+id/OpenOverlayStartButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/StartButton" />
+            android:text="@string/StartButton"
+            android:textColor="?attr/buttonTextColor" />
 
         <Button
             android:id="@+id/SaveFileButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/SaveFileButton" />
+            android:text="@string/SaveFileButton"
+            android:textColor="?attr/buttonTextColor" />
 
         <Button
             android:id="@+id/AppSettingsButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/SettingsButton" />
+            android:text="@string/SettingsButton"
+            android:textColor="?attr/buttonTextColor"/>
 
     </LinearLayout>
 

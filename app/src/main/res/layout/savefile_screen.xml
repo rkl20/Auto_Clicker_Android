@@ -67,7 +67,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/BackButton" />
+            android:text="@string/BackButton"
+            android:textColor="?attr/buttonTextColor" />
 
         <Button
             android:id="@+id/selectButton"
@@ -75,7 +76,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/SelectButton" />
+            android:text="@string/SelectButton"
+            android:textColor="?attr/buttonTextColor" />
 
         <Button
             android:id="@+id/renameButton"
@@ -83,13 +85,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/RenameButton" />
+            android:text="@string/RenameButton"
+            android:textColor="?attr/buttonTextColor" />
+
         <Button
             android:id="@+id/deleteButton"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/DeleteButton" />
+            android:text="@string/DeleteButton"
+            android:textColor="?attr/buttonTextColor" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

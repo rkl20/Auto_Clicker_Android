@@ -51,7 +51,8 @@
             android:id="@+id/permissionButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/PermissionButton" />
+            android:text="@string/PermissionButton"
+            android:textColor="?attr/buttonTextColor"/>
 
     </LinearLayout>
     <LinearLayout
@@ -82,24 +83,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1">
+
             <RadioButton
                 android:id="@+id/selectLightTheme"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/Light">
-            </RadioButton>
+                android:text="@string/Light"
+                android:textColor="?attr/android:textColor"/>
             <RadioButton
                 android:id="@+id/selectDarkTheme"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/Dark">
-            </RadioButton>
+                android:width="10dp"
+                android:text="@string/Dark"
+                android:textColor="?attr/android:textColor"/>
         </RadioGroup>
         <Button
             android:id="@+id/applyButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Apply"
+            android:textColor="?attr/buttonTextColor"
             android:layout_gravity="center"
             android:layout_weight="1"/>
     </LinearLayout>
@@ -142,6 +146,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/GraphicText"
+                android:textColor="@color/black"
                 android:textSize="50sp"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="5dp"/>
@@ -248,7 +253,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/BackButton" />
+            android:text="@string/BackButton"
+            android:textColor="?attr/buttonTextColor"/>
     </LinearLayout>
 
 

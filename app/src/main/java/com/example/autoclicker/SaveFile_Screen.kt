@@ -13,9 +13,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.setMargins
-import androidx.core.view.setPadding
-import java.io.File
+import android.util.TypedValue
 
 class SaveFile_Screen: BaseActivity() {
     private val dataManager = DataManager(this)
@@ -78,7 +78,13 @@ class SaveFile_Screen: BaseActivity() {
                     setOnClickListener{
                         // Clear the background of the previously selected TextView
                         selectedTextView?.let {
-                            it.setTextColor(ContextCompat.getColor(context, R.color.black))
+                            //get android:textColor based on theme
+                            val typedValue = TypedValue()
+                            context.theme.resolveAttribute(android.R.attr.textColor, typedValue, true)
+                            //set the color
+                            val textColor = ContextCompat.getColor(context, typedValue.resourceId)
+                            it.setTextColor(textColor)
+                            //set the background
                             it.background = getDrawable(R.drawable.border)
                         }
                         // Update the selected TextView

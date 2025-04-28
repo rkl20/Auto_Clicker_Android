@@ -100,14 +100,16 @@
                 android:layout_marginTop="5dp"
                 android:contentDescription="@string/PressGraphic"
                 app:srcCompat="@drawable/press_graphic" />
+
             <TextView
                 android:id="@+id/graphicText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/GraphicText"
-                android:textSize="50sp"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="5dp"
+                android:text="@string/GraphicText"
+                android:textColor="@color/black"
+                android:textSize="50sp" />
         </FrameLayout>
         <LinearLayout
             android:id="@+id/buttonColorClickLayout"
@@ -209,7 +211,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/BackButton" />
+            android:text="@string/BackButton"
+            android:textColor="?attr/buttonTextColor" />
     </LinearLayout>
 
 
