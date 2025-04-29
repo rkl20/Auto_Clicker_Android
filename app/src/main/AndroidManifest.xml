@@ -50,6 +50,10 @@
             android:name=".ButtonSettings_Screen"
             android:launchMode="singleTask"
             android:exported="false" />
+        <activity
+            android:name=".Debug_Screen"
+            android:launchMode="singleTask"
+            android:exported="false" />
 
     </application>
 

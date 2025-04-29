@@ -68,6 +68,11 @@ class MainActivity : BaseActivity() {
         openoverlaystartButton.setOnClickListener {
             openOverlay()
         }
+        val debugButton: Button = findViewById(R.id.debugButton)
+        debugButton.setOnClickListener {
+            debugButtonFun()
+        }
+
     }
 
     fun saveFileButtonFun(){
@@ -89,6 +94,23 @@ class MainActivity : BaseActivity() {
                 //start overlay
                 setPreviousActivity(null)
                 overlayManager.createOverlay()
+                finish()
+            }else{
+                overlayManager.requestAccessibilityPermission()
+            }
+        }
+    }
+    private fun debugButtonFun(){
+        //check for overlay permission
+        if (!overlayManager.checkOverlayPermission()) {
+            overlayManager.requestOverlayPermission()
+        } else {
+            //check for accessibility permission
+            if(overlayManager.checkAccessibilityServiceEnabled()){
+                //start overlay
+                setPreviousActivity(null)
+                overlayManager.createOverlay()
+                startActivity(Intent(this, Debug_Screen::class.java))
                 finish()
             }else{
                 overlayManager.requestAccessibilityPermission()

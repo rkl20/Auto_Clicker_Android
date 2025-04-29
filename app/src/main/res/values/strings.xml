@@ -22,11 +22,16 @@
     <string name="AppColorButton">App Color</string>
     <string name="DeleteButton">Delete</string>
     <string name="DefaultButton">Default</string>
+    <string name="DebugButton">Debug</string>
+    <string name="PrintTimeButton">Print Time</string>
+    <string name="PrintPosButton">Print Pos</string>
+    <string name="ClearButton">Clear</string>
     <!--screen-->
     <string name="AutoClickerScreen">Auto Clicker</string>
     <string name="SaveFileScreen">Save File</string>
     <string name="ButtonSettingsScreen">Button Settings</string>
     <string name="AppSettingsScreen">App Settings</string>
+    <string name="DebugScreen">Debug</string>
     <!--App Settings Strings-->
     <string name="PermissionSettingText">Permission Settings</string>
     <string name="AppColor">App Color Settings</string>
@@ -46,7 +51,8 @@
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
     <string name="GraphicText">0</string>
-
+    <string name="Touches">Touches:</string>
+    <string name="Time">Time:</string>
     <!--<string name=""></string>-->
 
 

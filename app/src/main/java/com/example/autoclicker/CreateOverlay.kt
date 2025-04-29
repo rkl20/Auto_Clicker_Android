@@ -229,7 +229,6 @@ class CreateOverlay(private val context: Context): BaseActivity() {
         )
         graphicOverlayView.setBackgroundColor(ContextCompat.getColor(context,R.color.overlayBG))//set background color for graphic overlay, transparent if want not seen
     }
-
     //layout param for button overlay
     private fun layoutParam(desiredWidthDp:Float,desiredHeightDp:Float): WindowManager.LayoutParams {
         val displayMetrics: DisplayMetrics = context.resources.displayMetrics
@@ -335,7 +334,6 @@ class CreateOverlay(private val context: Context): BaseActivity() {
         }
         globalActions?.dispatchGesture(gesture_builder_withtouch, callback, null)
     }
-
     /*fun performGlobalAction(action: Int) : Boolean{
         return try {
             val result = globalActions.performGlobalAction(action)
@@ -560,6 +558,7 @@ class CreateOverlay(private val context: Context): BaseActivity() {
                         Handler(Looper.getMainLooper()).post{
                             dispatchTouchEvent(x, y,settings2Dlist[index][0],settings2Dlist[index][1],latch)
                             Log.d("Start Button", "touch")
+                            Log.d("Pos and Time", "x: $x, y: $y, ST: ${settings2Dlist[index][0]}, DUR: ${settings2Dlist[index][1]}")
                         }
                         //wait on a separate thread
                         try {

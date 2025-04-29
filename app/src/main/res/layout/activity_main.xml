@@ -50,7 +50,12 @@
             android:layout_height="wrap_content"
             android:text="@string/SettingsButton"
             android:textColor="?attr/buttonTextColor"/>
-
+        <Button
+            android:id="@+id/debugButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/DebugButton"
+            android:textColor="?attr/buttonTextColor"/>
     </LinearLayout>
 
 
