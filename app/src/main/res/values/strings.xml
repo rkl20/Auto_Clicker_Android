@@ -6,6 +6,7 @@
     <string name="AddButton">+</string>
     <string name="SubButton">-</string>
     <string name="StartButton">Start</string>
+    <string name="StartStopButton">Start/Stop</string>
     <string name="SettingsButton">Settings</string>
     <string name="SaveButton">Save</string>
     <string name="LoadButton">Load</string>
@@ -53,6 +54,9 @@
     <string name="GraphicText">0</string>
     <string name="Touches">Touches:</string>
     <string name="Time">Time:</string>
+    <string name="LoopSettingText">Loop Setting</string>
+    <string name="LoopText">Loop</string>
+    <string name="LoopStop">Stop Loop</string>
     <!--<string name=""></string>-->
 
 
