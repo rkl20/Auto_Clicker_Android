@@ -103,16 +103,20 @@ class MainActivity : BaseActivity() {
     private fun debugButtonFun(){
         //check for overlay permission
         if (!overlayManager.checkOverlayPermission()) {
+            Log.d("MainActivity", "Overlay permission not granted")
             overlayManager.requestOverlayPermission()
         } else {
             //check for accessibility permission
+            Log.d("MainActivity", "Overlay permission granted")
             if(overlayManager.checkAccessibilityServiceEnabled()){
                 //start overlay
+                Log.d("MainActivity", "Accessibility permission granted")
                 setPreviousActivity(null)
                 overlayManager.createOverlay()
                 startActivity(Intent(this, Debug_Screen::class.java))
                 finish()
             }else{
+                Log.d("MainActivity", "Accessibility permission not granted")
                 overlayManager.requestAccessibilityPermission()
             }
         }
