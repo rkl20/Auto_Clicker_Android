@@ -41,10 +41,18 @@
             android:layout_height="wrap_content"
             android:text="@string/StartButton"
             android:textColor="?attr/buttonTextColor"
-            app:layout_constraintBottom_toTopOf="@+id/ButtonSettingsButton"
+            app:layout_constraintBottom_toTopOf="@+id/LoopButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/SubButton" />
-
+        <Button
+            android:id="@+id/LoopButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/LoopStop"
+            android:textColor="?attr/buttonTextColor"
+            app:layout_constraintTop_toBottomOf="@+id/StartButton"
+            app:layout_constraintBottom_toTopOf="@+id/ButtonSettingsButton"
+            app:layout_constraintEnd_toEndOf="parent"/>
         <Button
             android:id="@+id/ButtonSettingsButton"
             android:layout_width="match_parent"
@@ -53,7 +61,7 @@
             android:textColor="?attr/buttonTextColor"
             app:layout_constraintBottom_toTopOf="@+id/SaveButton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/StartButton" />
+            app:layout_constraintTop_toBottomOf="@+id/LoopButton" />
 
         <Button
             android:id="@+id/SaveButton"
