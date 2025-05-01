@@ -96,6 +96,8 @@ class CreateOverlay(private val context: Context): BaseActivity() {
     var defaultStartTime: Long = 0
     var defaultDuration: Long = 100
 
+    //var for loop
+    var loop = false
 
 
     //create the button overlay
@@ -122,6 +124,7 @@ class CreateOverlay(private val context: Context): BaseActivity() {
         val addButton: Button = buttonOverlayView.findViewById(R.id.AddButton)
         val subButton: Button = buttonOverlayView.findViewById(R.id.SubButton)
         val startButton: Button = buttonOverlayView.findViewById(R.id.StartButton)
+        val loopButton: Button = buttonOverlayView.findViewById(R.id.LoopButton)
         val buttonSetting: Button = buttonOverlayView.findViewById(R.id.ButtonSettingsButton)
         val saveButton: Button = buttonOverlayView.findViewById(R.id.SaveButton)
         val loadButton: Button = buttonOverlayView.findViewById(R.id.loadButton)
@@ -136,6 +139,17 @@ class CreateOverlay(private val context: Context): BaseActivity() {
         }
         startButton.setOnClickListener {
             startbuttonfun()
+        }
+        loopButton.setOnClickListener {
+            if(loop){
+                loop = false
+                loopButton.text = context.getString(R.string.LoopStop)
+                Log.d("OverlayDebug", "loop is now false")
+            }else{
+                loop = true
+                loopButton.text = context.getString(R.string.LoopText)
+                Log.d("OverlayDebug", "loop is now true")
+            }
         }
         buttonSetting.setOnClickListener {
             buttonsettingsfun()
@@ -364,6 +378,7 @@ class CreateOverlay(private val context: Context): BaseActivity() {
     }
     //the function that checks if accessibility permission is granted
     fun checkAccessibilityServiceEnabled(): Boolean {
+        Log.d("OverlayDebug","checkAccessibilityServiceEnabled in CreateOverlay called")
         val service = context.packageName + "/" + OverlayAccessibilityService::class.java.canonicalName
         val enabledServicesSetting = Settings.Secure.getString(
             context.contentResolver,
@@ -375,8 +390,10 @@ class CreateOverlay(private val context: Context): BaseActivity() {
     //Check android version to see if overlay permission is granted by default or not, if new version check the settings to see its granted or not, then get request permission
     fun checkOverlayPermission(): Boolean {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            Log.d("OverlayDebug","checkOverlayPermission checking")
             Settings.canDrawOverlays(context)
         } else {
+            Log.d("OverlayDebug","checkOverlayPermission granted by default")
             true // On older versions, it's granted by default
         }
     }
@@ -384,10 +401,13 @@ class CreateOverlay(private val context: Context): BaseActivity() {
     //request the permission if not already granted
     fun requestOverlayPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            Log.d("OverlayDebug","requestOverlayPermission called")
             val intent = Intent(
                 Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                 "package:${context.packageName}".toUri()
             )
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            context.startActivity(intent)
         }
     }
     //start new activity in this case buttonsettings_screen
@@ -545,26 +565,48 @@ class CreateOverlay(private val context: Context): BaseActivity() {
             //fun(){inside this is code that we want to run after oncomplete()}
             graphicOverlayView.setBackgroundColor(ContextCompat.getColor(context,R.color.invisible))
             setOverlayTouchable(false){ // we set the overlay non touchable, and when it's done, we continue
+                //set loop in function to true to start the first touch event
+                var loopInFun = true
                 Thread {
-                    graphicOverlaysList.forEachIndexed { index, graphic ->
-                        val latch = CountDownLatch(1) // Initialize latch for each gesture
-                        //make it non touchable before we get the position
-
-                        val location = IntArray(2)
-                        graphic.getLocationOnScreen(location)
-                        val x = location[0].toFloat() + (graphic.width / 2)
-                        val y = location[1].toFloat() + (graphic.height / 2)
-                        // Dispatch on Main Thread
-                        Handler(Looper.getMainLooper()).post{
-                            dispatchTouchEvent(x, y,settings2Dlist[index][0],settings2Dlist[index][1],latch)
-                            Log.d("Start Button", "touch")
-                            Log.d("Pos and Time", "x: $x, y: $y, ST: ${settings2Dlist[index][0]}, DUR: ${settings2Dlist[index][1]}")
+                    //start first touch event
+                    while(loopInFun) {
+                        //if first time will only do touch event once
+                        //if in loop need to touch loop button to stop loop
+                        if (!loop) {
+                            loopInFun = false
                         }
-                        //wait on a separate thread
-                        try {
-                            latch.await() // Wait here until latch.countDown() is called
-                        } catch (e: InterruptedException) {
-                            Log.e("dispatchTouchEvent", "Interrupted while waiting for gesture to complete: ${e.message}")
+                        graphicOverlaysList.forEachIndexed { index, graphic ->
+                            val latch = CountDownLatch(1) // Initialize latch for each gesture
+                            //make it non touchable before we get the position
+
+                            val location = IntArray(2)
+                            graphic.getLocationOnScreen(location)
+                            val x = location[0].toFloat() + (graphic.width / 2)
+                            val y = location[1].toFloat() + (graphic.height / 2)
+                            // Dispatch on Main Thread
+                            Handler(Looper.getMainLooper()).post {
+                                dispatchTouchEvent(
+                                    x,
+                                    y,
+                                    settings2Dlist[index][0],
+                                    settings2Dlist[index][1],
+                                    latch
+                                )
+                                Log.d("Start Button", "touch")
+                                Log.d(
+                                    "Pos and Time",
+                                    "x: $x, y: $y, ST: ${settings2Dlist[index][0]}, DUR: ${settings2Dlist[index][1]}"
+                                )
+                            }
+                            //wait on a separate thread
+                            try {
+                                latch.await() // Wait here until latch.countDown() is called
+                            } catch (e: InterruptedException) {
+                                Log.e(
+                                    "dispatchTouchEvent",
+                                    "Interrupted while waiting for gesture to complete: ${e.message}"
+                                )
+                            }
                         }
                     }
                     // Back to the main thread to unlock
@@ -573,6 +615,7 @@ class CreateOverlay(private val context: Context): BaseActivity() {
                         graphicOverlayView.setBackgroundColor(ContextCompat.getColor(context,R.color.overlayBG))
                         setOverlayTouchable(true){}
                     }
+
                 }.start()
             }
 
