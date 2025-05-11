@@ -6,104 +6,106 @@
     android:layout_width="110dp"
     android:layout_height="wrap_content"
     android:background="@color/overlayBG"> <!-- Semi-transparent black -->
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ButtonLayout"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
-
-        <Button
-            android:id="@+id/AddButton"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ButtonLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:text="@string/AddButton"
-            android:textColor="?attr/buttonTextColor"
-            app:layout_constraintBottom_toTopOf="@+id/SubButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
 
-        <Button
-            android:id="@+id/SubButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/SubButton"
-            android:textColor="?attr/buttonTextColor"
-            app:layout_constraintBottom_toTopOf="@+id/StartButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/AddButton" />
+            <Button
+                android:id="@+id/AddButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="@string/AddButton"
+                android:textColor="?attr/buttonTextColor"
+                app:layout_constraintBottom_toTopOf="@+id/SubButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/StartButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/StartButton"
-            android:textColor="?attr/buttonTextColor"
-            app:layout_constraintBottom_toTopOf="@+id/LoopButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/SubButton" />
-        <Button
-            android:id="@+id/LoopButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/LoopStop"
-            android:textColor="?attr/buttonTextColor"
-            app:layout_constraintTop_toBottomOf="@+id/StartButton"
-            app:layout_constraintBottom_toTopOf="@+id/ButtonSettingsButton"
-            app:layout_constraintEnd_toEndOf="parent"/>
-        <Button
-            android:id="@+id/ButtonSettingsButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/SettingsButton"
-            android:textColor="?attr/buttonTextColor"
-            app:layout_constraintBottom_toTopOf="@+id/SaveButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/LoopButton" />
+            <Button
+                android:id="@+id/SubButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/SubButton"
+                android:textColor="?attr/buttonTextColor"
+                app:layout_constraintBottom_toTopOf="@+id/StartButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/AddButton" />
 
-        <Button
-            android:id="@+id/SaveButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/SaveButton"
-            android:textColor="?attr/buttonTextColor"
-            app:layout_constraintBottom_toTopOf="@+id/loadButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ButtonSettingsButton" />
+            <Button
+                android:id="@+id/StartButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/StartButton"
+                android:textColor="?attr/buttonTextColor"
+                app:layout_constraintBottom_toTopOf="@+id/LoopButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/SubButton" />
+            <Button
+                android:id="@+id/LoopButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/LoopStop"
+                android:textColor="?attr/buttonTextColor"
+                app:layout_constraintTop_toBottomOf="@+id/StartButton"
+                app:layout_constraintBottom_toTopOf="@+id/ButtonSettingsButton"
+                app:layout_constraintEnd_toEndOf="parent"/>
+            <Button
+                android:id="@+id/ButtonSettingsButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/SettingsButton"
+                android:textColor="?attr/buttonTextColor"
+                app:layout_constraintBottom_toTopOf="@+id/SaveButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/LoopButton" />
 
-        <Button
-            android:id="@+id/loadButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/LoadButton"
-            android:textColor="?attr/buttonTextColor"
-            app:layout_constraintBottom_toTopOf="@+id/closeButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/SaveButton" />
+            <Button
+                android:id="@+id/SaveButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/SaveButton"
+                android:textColor="?attr/buttonTextColor"
+                app:layout_constraintBottom_toTopOf="@+id/loadButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ButtonSettingsButton" />
 
-        <Button
-            android:id="@+id/closeButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/CloseButton"
-            android:textColor="?attr/buttonTextColor"
-            app:layout_constraintBottom_toTopOf="@id/minimizeButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/loadButton" />
+            <Button
+                android:id="@+id/loadButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/LoadButton"
+                android:textColor="?attr/buttonTextColor"
+                app:layout_constraintBottom_toTopOf="@+id/closeButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/SaveButton" />
 
-        <Button
-            android:id="@+id/minimizeButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/MinimizeButton"
-            android:textColor="?attr/buttonTextColor"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/closeButton" />
+            <Button
+                android:id="@+id/closeButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/CloseButton"
+                android:textColor="?attr/buttonTextColor"
+                app:layout_constraintBottom_toTopOf="@id/minimizeButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/loadButton" />
+
+            <Button
+                android:id="@+id/minimizeButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/MinimizeButton"
+                android:textColor="?attr/buttonTextColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/closeButton" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
     <!-- Add more views here... -->
 </FrameLayout>
