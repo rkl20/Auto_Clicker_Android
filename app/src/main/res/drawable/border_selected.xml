@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-
+<!--used in save file-->
     <solid android:color="?borderColorInsideSelected" /> <!-- Background color (optional) -->
     <stroke
         android:width="2dp"
