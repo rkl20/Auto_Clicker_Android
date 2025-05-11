@@ -29,30 +29,34 @@ import androidx.core.net.toUri
 //timing
 import android.os.Handler
 import android.os.Looper
+import android.view.ContextThemeWrapper
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.graphics.drawable.DrawableCompat
 import java.util.concurrent.CountDownLatch
 
-//
-//should change the name to overlay manager, because it is managing the overlay
-class CreateOverlay(private val context: Context): BaseActivity() {
+//createOverlay is not an activity, it is a class that creates the overlay
+//should change the class name to overlay manager, because it is managing the overlay
+class OverlayManager(private val context: Context){
 
     // companion object to implement the singleton pattern, to give access to other activity
     companion object {
         @Volatile
-        private var INSTANCE: CreateOverlay? = null
+        private var INSTANCE: OverlayManager? = null
 
-        fun getInstance(context: Context): CreateOverlay {
+        fun getInstance(context: Context): OverlayManager {
             return INSTANCE ?: synchronized(this) {
-                val instance = CreateOverlay(context)
+                val instance = OverlayManager(context)
                 INSTANCE = instance
                 instance
             }
         }
     }
+
+    val app = context.applicationContext as MyApp
     //button and graphic overlay variable
     private lateinit var buttonOverlayView: FrameLayout
     lateinit var graphicOverlayView: FrameLayout
@@ -93,12 +97,38 @@ class CreateOverlay(private val context: Context): BaseActivity() {
     //var for default
     var defaultGraphicPosX: Float = 10f
     var defaultGraphicPosY: Float = 10f
-    var defaultStartTime: Long = 0
+    var defaultStartTime: Long = 100
     var defaultDuration: Long = 100
 
     //var for loop
     var loop = false
 
+    // Define constants for the theme keys and values
+    private val PREFS_NAME = "MyPrefs" // Use the same name as in AppSettings_Screen
+    private val THEME_KEY = "theme"
+    private val THEME_LIGHT = "light"
+    private val THEME_DARK = "dark"
+
+    // Get a handle to SharedPreferences
+    private val sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+
+    // Variable to store the current theme resource ID
+    var currentTheme: Int = R.style.Base_Theme_AutoClicker_Light // Default to light theme
+
+    init {
+        // Read the saved theme from SharedPreferences when the OverlayManager is created
+        loadThemeFromSharedPreferences()
+    }
+
+    // Function to load the theme from SharedPreferences
+    private fun loadThemeFromSharedPreferences() {
+        val savedTheme = sharedPreferences.getString(THEME_KEY, THEME_LIGHT) // Default to light if no theme is saved
+        currentTheme = when (savedTheme) {
+            THEME_DARK -> R.style.Base_Theme_AutoClicker_Dark // Assuming you have a dark theme resource
+            else -> R.style.Base_Theme_AutoClicker_Light
+        }
+        Log.d("OverlayManager", "Loaded theme from SharedPreferences: $savedTheme, Resource ID: $currentTheme")
+    }
 
     //create the button overlay
     fun createOverlay() {
@@ -108,7 +138,8 @@ class CreateOverlay(private val context: Context): BaseActivity() {
         }
 
         // Inflate the XML layout
-        val inflater = LayoutInflater.from(context)
+        val contextThemeWrapper = ContextThemeWrapper(context, currentTheme)
+        val inflater = LayoutInflater.from(contextThemeWrapper)
         buttonOverlayView = inflater.inflate(R.layout.layout_overlay, null) as FrameLayout
         //Log.d("createOverlay", "buttonOverlayView: $buttonOverlayView")
 
@@ -141,15 +172,7 @@ class CreateOverlay(private val context: Context): BaseActivity() {
             startbuttonfun()
         }
         loopButton.setOnClickListener {
-            if(loop){
-                loop = false
-                loopButton.text = context.getString(R.string.LoopStop)
-                Log.d("OverlayDebug", "loop is now false")
-            }else{
-                loop = true
-                loopButton.text = context.getString(R.string.LoopText)
-                Log.d("OverlayDebug", "loop is now true")
-            }
+            loopButtonFun()
         }
         buttonSetting.setOnClickListener {
             buttonsettingsfun()
@@ -453,6 +476,51 @@ class CreateOverlay(private val context: Context): BaseActivity() {
         colorChange = 1
     }
 
+    /*fun removeOverlayViews() {
+        if (::buttonOverlayView.isInitialized && buttonOverlayVisible) {
+            try {
+                windowManager.removeView(buttonOverlayView)
+                buttonOverlayVisible = false
+                onButtonOverlayClosed?.invoke()
+                Log.d("OverlayDebug", "buttonOverlayView removed")
+            } catch (e: IllegalArgumentException) {
+                Log.e("OverlayDebug", "Error removing buttonOverlayView: ${e.message}")
+            }
+        }
+        if (::graphicOverlayView.isInitialized && graphicOverlayVisible) {
+            try {
+                windowManager.removeView(graphicOverlayView)
+                graphicOverlayVisible = false
+                onGraphicOverlayClosed?.invoke()
+                Log.d("OverlayDebug", "graphicOverlayView removed")
+            } catch (e: IllegalArgumentException) {
+                Log.e("OverlayDebug", "Error removing graphicOverlayView: ${e.message}")
+            }
+        }
+        if(graphicOverlaysList.isNotEmpty()){
+            graphicOverlaysList.clear()
+            Log.d("OverlayDebug", "graphicOverlaysList cleared")
+        }
+        if(settings2Dlist.isNotEmpty()){
+            settings2Dlist.clear()
+            Log.d("OverlayDebug", "settings2Dlist cleared")
+        }
+        if(graphicCounter > 1){
+            graphicCounter = 1
+            Log.d("OverlayDebug", "graphicCounter reset")
+        }
+        Log.d("OverlayDebug", "removeOverlayViews() finished")
+    }*/
+    fun applyThemeFun(Theme: String){
+        when(Theme){
+            "light" -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+            "dark" -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
+        }
+    }
     //button fun
     fun addbuttonfun(desiredWidth: Int, desiredHeight: Int, GraphicPosX: Float, GraphicPosY: Float, ST: Long, DUR: Long){
         // create and customize graphic overlay
@@ -708,5 +776,18 @@ class CreateOverlay(private val context: Context): BaseActivity() {
             }
         graphicOverlayView.visibility = View.VISIBLE
         graphicOverlayVisible = true
+    }
+
+    private fun loopButtonFun(){
+        val loopButton = buttonOverlayView.findViewById<Button>(R.id.LoopButton)
+        if(loop){
+            loop = false
+            loopButton.text = context.getString(R.string.LoopStop)
+            Log.d("OverlayDebug", "loop is now false")
+        }else{
+            loop = true
+            loopButton.text = context.getString(R.string.LoopText)
+            Log.d("OverlayDebug", "loop is now true")
+        }
     }
 }
