@@ -12,10 +12,9 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 //color picker
 import com.skydoves.colorpickerview.ColorPickerDialog
@@ -23,7 +22,7 @@ import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
 
 
 class ButtonSettings_Screen: BaseActivity() {
-    private lateinit var overlayManager: CreateOverlay //instance of the new class
+    private lateinit var overlayManager: OverlayManager //instance of the new class
     private lateinit var overlayPermissionLauncher: ActivityResultLauncher<Intent>
     private lateinit var linearLayout: LinearLayout
     //init layout and view
@@ -37,10 +36,13 @@ class ButtonSettings_Screen: BaseActivity() {
     private lateinit var backButton: Button
     //lateinit graphic
     private lateinit var imageGraphic: ImageView
+    //lateinit saveguard
+    private var startTimeLowerLimit = 1L
+    private var startTimeHigherLimit = 60000L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        overlayManager = CreateOverlay.getInstance(this)
+        overlayManager = OverlayManager.getInstance(this)
         enableEdgeToEdge()
         setContentView(R.layout.buttonsettings_screen)
 
@@ -148,8 +150,14 @@ class ButtonSettings_Screen: BaseActivity() {
                 if (!hasFocus && editTextStartTime.text.isNotEmpty()) {
                     val enteredText = editTextStartTime.text.toString().trim()
                     val textLong = enteredText.toLong()
-                    if(textLong < (60*1000)){//S*1000ms
-                        settingsList[i][0] = enteredText.toLong()
+                    if(textLong >= startTimeLowerLimit){
+                        if(textLong < startTimeHigherLimit){
+                            settingsList[i][0] = enteredText.toLong()
+                        }else{
+                            Toast.makeText(this, "Time is too Long", Toast.LENGTH_SHORT).show()
+                        }
+                    }else{
+                        Toast.makeText(this, "Time is too Short", Toast.LENGTH_SHORT).show()
                     }
 
                     //Log.d("DropDownData", "Dropdown data updated for graphic ${graphic.id}: $enteredText")
@@ -159,8 +167,14 @@ class ButtonSettings_Screen: BaseActivity() {
                 if (!hasFocus && editTextDuration.text.isNotEmpty()) {
                     val enteredText = editTextDuration.text.toString().trim()
                     val textLong = enteredText.toLong()
-                    if(textLong < (60*1000)){//S*1000ms
-                        settingsList[i][1] = enteredText.toLong()
+                    if(textLong >= startTimeLowerLimit){
+                        if(textLong < startTimeHigherLimit){
+                            settingsList[i][0] = enteredText.toLong()
+                        }else{
+                            Toast.makeText(this, "Time is too Long", Toast.LENGTH_SHORT).show()
+                        }
+                    }else{
+                        Toast.makeText(this, "Time is too Short", Toast.LENGTH_SHORT).show()
                     }
                     //Log.d("DropDownData", "Dropdown data updated for graphic ${graphic.id}: $enteredText")
                 }
