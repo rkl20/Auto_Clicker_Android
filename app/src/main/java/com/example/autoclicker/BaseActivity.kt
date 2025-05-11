@@ -15,7 +15,9 @@ open class BaseActivity : AppCompatActivity() {
     private val THEME_KEY = "theme"
     private val THEME_LIGHT = "light"
     private val THEME_DARK = "dark"
+    lateinit var app: MyApp
     override fun onCreate(savedInstanceState: Bundle?) {
+        app = application as MyApp
         sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
         applySavedTheme() // Apply the theme before the layout is inflated
         super.onCreate(savedInstanceState)
@@ -26,18 +28,17 @@ open class BaseActivity : AppCompatActivity() {
         when (savedTheme) {
             THEME_LIGHT -> {
                 setTheme(R.style.Base_Theme_AutoClicker_Light)
-                //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
 
             THEME_DARK -> {
                 setTheme(R.style.Base_Theme_AutoClicker_Dark)
-                //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             }
         }
     }
 
     fun setPreviousActivity(prevAct: String?){
-        val app = application as MyApp
         app.previousActivity = prevAct
         Log.d("fromPreviousActivity", "fromPreviousActivity: $app.previousActivity")
     }
