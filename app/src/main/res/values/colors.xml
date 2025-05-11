@@ -18,9 +18,9 @@
     <color name="light_background">#FFFFFF</color>
     <color name="light_text">#000000</color>
     <color name="light_status_bar">#1976D2</color>
-    <color name="light_border_selected">#5A000000</color>
+    <color name="light_border_selected">#5A000000</color><!-- border -->
     <color name="light_border_unselected">#FFFFFFFF</color>
-    <color name="light_radio_button_selected">#000000</color>"
+    <color name="light_radio_button_selected">#000000</color>
     <color name="light_radio_button_unselected">#FFFFFF</color>
 
     <color name="dark_primary">#656E78</color>
@@ -32,7 +32,7 @@
     <color name="dark_background">#121212</color>
     <color name="dark_text">#FFFFFF</color>
     <color name="dark_status_bar">#000000</color>
-    <color name="dark_border_selected">#5AB4B4B4</color>
+    <color name="dark_border_selected">#5AB4B4B4</color><!-- border -->
     <color name="dark_border_unselected">#404040</color>
     <color name="dark_radio_button_selected">#FFFFFF</color>
     <color name="dark_radio_button_unselected">#000000</color>
