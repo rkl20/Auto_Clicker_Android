@@ -1,7 +1,6 @@
 package com.example.autoclicker
 
 import android.app.AlertDialog
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -13,13 +12,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.setMargins
 import android.util.TypedValue
 
 class SaveFile_Screen: BaseActivity() {
     private val dataManager = DataManager(this)
-    private val overlayManager = CreateOverlay.getInstance(this)
+    private val overlayManager = OverlayManager.getInstance(this)
     //Keep track of the selected view
     private var selectedTextView: TextView? = null
     private lateinit var saveFileSelected: String
