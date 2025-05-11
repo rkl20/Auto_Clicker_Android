@@ -1,8 +1,6 @@
 package com.example.autoclicker
 
 import android.accessibilityservice.AccessibilityService
-import android.accessibilityservice.AccessibilityServiceInfo
-import android.util.Log
 import android.view.accessibility.AccessibilityEvent
 
 class OverlayAccessibilityService : AccessibilityService() {
@@ -21,6 +19,6 @@ class OverlayAccessibilityService : AccessibilityService() {
         // Configure the type of events you want to receive
 
         // Notify CreateOverlay of the connection
-        CreateOverlay.getInstance(this).onServiceConnected(this)
+        OverlayManager.getInstance(this).onServiceConnected(this)
     }
 }
