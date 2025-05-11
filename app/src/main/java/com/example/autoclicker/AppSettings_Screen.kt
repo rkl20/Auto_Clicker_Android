@@ -12,13 +12,11 @@ import android.widget.LinearLayout
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import com.skydoves.colorpickerview.ColorPickerDialog
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
 
 class AppSettings_Screen: BaseActivity() {
-    private lateinit var overlayManager: CreateOverlay //instance of the new class
+    private lateinit var overlayManager: OverlayManager //instance of the new class
     //init layout and view
     private lateinit var buttonColorLayout: LinearLayout
     private lateinit var bgColorLayout: LinearLayout
@@ -26,6 +24,7 @@ class AppSettings_Screen: BaseActivity() {
     private lateinit var buttonColorView: View
     private lateinit var bgColorView: View
     private lateinit var textColorView: View
+    private lateinit var radioGroup: RadioGroup
     //lateinit graphic
     private lateinit var imageGraphic: ImageView
 
@@ -40,7 +39,7 @@ class AppSettings_Screen: BaseActivity() {
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
         enableEdgeToEdge()
-        overlayManager = CreateOverlay.getInstance(this)
+        overlayManager = OverlayManager.getInstance(this)
         //set view
         setContentView(R.layout.appsettings_screen)
 
@@ -53,12 +52,13 @@ class AppSettings_Screen: BaseActivity() {
         buttonColorView = findViewById(R.id.buttonColorView)
         bgColorView = findViewById(R.id.bgColorView)
         textColorView = findViewById(R.id.textColorView)
+        //get radio group
+        radioGroup = findViewById(R.id.radioGroup)
         //get button
         val applyButton: Button = findViewById(R.id.applyButton)
         val permissionButton: Button = findViewById(R.id.permissionButton)
         val backButton: Button = findViewById(R.id.backButton)
-        //get radio group
-        val radioGroup: RadioGroup = findViewById(R.id.radioGroup)
+
 
         //call fun to change view color
         colorChanged()
@@ -67,23 +67,10 @@ class AppSettings_Screen: BaseActivity() {
         permissionButton.setOnClickListener {
             permissionButtonfun()
         }
-
-        radioGroup.setOnCheckedChangeListener{group, checkedId ->
-            when(checkedId){
-                R.id.selectLightTheme -> {
-                    Log.d("Theme","Theme will change to light")
-                    saveTheme(THEME_LIGHT)
-                }
-                R.id.selectDarkTheme -> {
-                    Log.d("Theme","Theme will change to dark")
-                    saveTheme(THEME_DARK)
-                }
-            }
-        }
-
         applyButton.setOnClickListener{
-            recreate()
+            applyButtonFun()
         }
+
         buttonColorLayout.setOnClickListener{
             colorPicker(buttonColorView) {color ->
                 // Update the inner circle color permanently
@@ -141,7 +128,19 @@ class AppSettings_Screen: BaseActivity() {
         editor.putString(THEME_KEY, theme)
         editor.apply()
     }
-
+    //apply theme
+    private fun applyButtonFun() {
+        if(radioGroup.checkedRadioButtonId == R.id.selectLightTheme){
+            Log.d("Theme","Theme will change to light")
+            saveTheme(THEME_LIGHT)
+            overlayManager.currentTheme = R.style.Base_Theme_AutoClicker_Light
+        }else if(radioGroup.checkedRadioButtonId == R.id.selectDarkTheme){
+            Log.d("Theme","Theme will change to dark")
+            saveTheme(THEME_DARK)
+            overlayManager.currentTheme = R.style.Base_Theme_AutoClicker_Dark
+        }
+        recreate()
+    }
     //button function
     private fun permissionButtonfun() {
         overlayManager.requestAccessibilityPermission()
