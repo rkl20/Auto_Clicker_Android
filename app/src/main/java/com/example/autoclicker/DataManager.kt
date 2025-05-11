@@ -6,7 +6,7 @@ import com.google.gson.Gson
 import java.io.File
 import java.io.FileReader
 import java.io.FileWriter
-
+//data manager is for managing data of app outside of runtime, such as save and loading
 //store location of graphic
 data class GraphicData(val x: Float, val y: Float)
 
