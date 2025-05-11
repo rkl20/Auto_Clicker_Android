@@ -10,7 +10,17 @@
         <item name="colorOnSecondary">@color/dark_on_secondary</item>
         <item name="android:windowBackground">@color/dark_background</item>
         <item name="android:textColor">@color/dark_text</item>
-        <item name="android:statusBarColor">@color/dark_status_bar</item>    </style>
+        <item name="android:statusBarColor">@color/dark_status_bar</item>
+
+        <item name="borderColor">@color/white</item>
+        <item name="borderColorInsideUnselected">@color/dark_border_unselected</item>
+        <item name="borderColorInsideSelected">@color/dark_border_selected</item>
+
+        <item name="buttonTextColor">@color/white</item>
+
+        <item name="radioButtonColorSelected">@color/dark_radio_button_selected</item>
+        <item name="radioButtonColorUnselected">@color/dark_radio_button_unselected</item>
+    </style>
 
 
 </resources>
